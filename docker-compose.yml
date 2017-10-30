@@ -1,0 +1,28 @@
+version: '2'
+services:
+  php:
+    build:
+      context: docker/php7
+    volumes:
+      - $PWD:/var/www/html
+      - ./docker/php.ini:/etc/php/7.1/cli/php.ini
+    user: $UID
+    working_dir: /var/www/html
+    depends_on:
+      - db
+
+  composer:
+    image: composer
+    user: $UID
+    depends_on:
+      - php
+    volumes:
+      - $PWD:/app
+    command: composer install --ignore-platform-reqs
+
+  db:
+    image: mysql
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: example
+        MYSQL_DATABASE: app_test

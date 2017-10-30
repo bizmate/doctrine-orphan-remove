@@ -1,0 +1,22 @@
+default:
+  formatters:
+    progress: true
+  suites:
+    default:
+      paths:
+        features: features
+      contexts:
+        - IntegrationContext:
+            entityManager:  '@doctrine.orm.entity_manager'
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        env: test
+        debug: true
+        path: features/Fixtures/AppKernel.php
+        bootstrap: features/Fixtures/autoload.php
+    Behat\MinkExtension:
+      base_url: 'http://www.acme.dev/app_test.php/'
+      sessions:
+        default:
+          symfony2: ~

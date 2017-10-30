@@ -1,0 +1,18 @@
+App\TestBundle\Entity\ExtraSourceConfig:
+    type: entity
+    table: extra_source_config
+    repositoryClass: App\TestBundle\Repository\ExtraSourceConfig
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        businessId:
+            type: string
+            length: 255
+            unique: true
+        businessName:
+            type: string
+            length: 255

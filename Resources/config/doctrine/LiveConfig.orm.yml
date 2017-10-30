@@ -1,0 +1,39 @@
+App\TestBundle\Entity\LiveConfig:
+    type: entity
+    table: live_config
+    repositoryClass: App\TestBundle\Repository\LiveConfig
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        uuid:
+            type: string
+            length: 16
+        url:
+            type: string
+            length: 255
+        createdAt:
+            column: created_at
+            type: datetime
+        updatedAt:
+            column: updated_at
+            type: datetime
+
+    manyToOne:
+        mainSourceConfig:
+            targetEntity: App\TestBundle\Entity\MainSourceConfig
+            invesedBy: App\TestBundle\Entity\LiveConfig
+            joinColumn:
+                name: main_source_config_id
+                referencedColumnName: id
+            cascade: [ "persist" ]
+            orphanRemoval: true
+        extraSourceConfig:
+            targetEntity: App\TestBundle\Entity\ExtraSourceConfig
+            joinColumn:
+                name: extra_source_config_id
+                referencedColumnName: id
+            cascade: [ "persist" ]

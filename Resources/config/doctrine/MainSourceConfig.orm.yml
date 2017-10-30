@@ -1,0 +1,18 @@
+App\TestBundle\Entity\MainSourceConfig:
+    type: entity
+    table: main_source_config
+    repositoryClass: App\TestBundle\Repository\MainSourceConfig
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        placeId:
+            type: string
+            length: 255
+            unique: true
+        placeName:
+            type: string
+            length: 255
